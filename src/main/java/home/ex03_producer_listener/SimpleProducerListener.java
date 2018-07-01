@@ -8,6 +8,7 @@ import org.springframework.kafka.support.ProducerListenerAdapter;
 public class SimpleProducerListener extends ProducerListenerAdapter<Integer, String> {
 	@Override
 	public boolean isInterestedInSuccess() {
+		// true 를 반환해야 onSuccess()가 호출된다.
 		return true;
 	}
 
