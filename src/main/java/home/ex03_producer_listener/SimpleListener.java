@@ -9,7 +9,7 @@ import java.util.concurrent.CountDownLatch;
 class SimpleListener {
 	final CountDownLatch latch1 = new CountDownLatch(1);
 
-	@KafkaListener(id = "foo", topics = "annotated1")
+	@KafkaListener(id = "foo_consumer_ex03", topics = "annotated1")
 	private void listen1(String foo) {
 		log.warn("received: " + foo);
 		this.latch1.countDown();
