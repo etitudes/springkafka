@@ -1,0 +1,20 @@
+
+23:59:26.106 [kafka-producer-network-thread | producer-1]
+ERROR h.e.SimpleProducerListener - Producer에서 정상 처리됨
+- topic: annotated1
+- key: 0
+- value: foo1
+
+23:59:42.457 [foo-0-C-1] INFO  o.a.k.c.c.i.AbstractCoordinator - Successfully joined group foo with generation 1
+23:59:42.458 [foo-0-C-1] INFO  o.a.k.c.c.i.ConsumerCoordinator - Setting newly assigned partitions [annotated1-0] for group foo
+23:59:42.459 [foo-0-C-1] DEBUG o.a.k.c.c.i.ConsumerCoordinator - Group foo fetching committed offsets for partitions: [annotated1-0]
+
+23:59:42.460 [kafka-producer-network-thread | producer-1]
+ERROR h.e.SimpleProducerListener - Producer에서 에러가 발생함
+- message: This server does not host this topic-partition.
+- topic: annotated1
+- key: 1
+- value: foo2
+
+23:59:42.460 [kafka-producer-network-thread | producer-1] WARN  o.a.k.c.producer.internals.Sender - Received unknown topic or partition error in produce request on partition annotated1-0. The topic/partition may not exist or the user may not have Describe access to it
+
