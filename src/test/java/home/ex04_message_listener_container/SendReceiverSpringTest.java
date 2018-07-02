@@ -17,7 +17,7 @@ public class SendReceiverSpringTest {
 	private KafkaTemplate<Integer, String> template;
 
 	@Autowired
-	private KafkaTemplate<Long, EmpDto> templateEmp;
+	private KafkaTemplate<Integer, EmpDto> templateEmp;
 
 	@Test
 	public void testSimple() throws Exception {
@@ -30,9 +30,9 @@ public class SendReceiverSpringTest {
 		template.send("annotated1", 1, "foo2" + new Date());
 		template.flush();
 
-		templateEmp.send("emp-topic", 0L, newEmpJson(1L));
+		templateEmp.send("emp-topic", 0, newEmpJson(1L));
 		templateEmp.flush();
-		templateEmp.send("emp-topic", 1L, newEmpJson(2L));
+		templateEmp.send("emp-topic", 1, newEmpJson(2L));
 		templateEmp.flush();
 	}
 
