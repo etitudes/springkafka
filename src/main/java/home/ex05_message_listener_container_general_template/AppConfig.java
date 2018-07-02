@@ -29,8 +29,10 @@ class AppConfig {
 	public ConcurrentMessageListenerContainer simpleEmpMessageListenerContainer(@Autowired SimpleEmpListener listener) {
 		ContainerProperty property = new ContainerProperty();
 		property.setTopic("emp-topic");
-		property.setConsumerGroupId("foo_consumer_ex04");
-		property.setConsumerConfigs(consumerConfigs());
+		property.setConsumerGroupId("foo_consumer_ex05");
+		Map<String, Object> consumerConfigs = consumerConfigs();
+		consumerConfigs.put(ConsumerConfig.CLIENT_ID_CONFIG, "client-ex05");
+		property.setConsumerConfigs(consumerConfigs);
 		return KafkaConsumerContainerFactory.newContainer(EmpDto.class, listener, property);
 	}
 

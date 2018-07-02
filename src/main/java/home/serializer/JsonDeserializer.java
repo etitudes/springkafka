@@ -21,7 +21,6 @@ public abstract class JsonDeserializer {
 	}
 
 	public static <T> T deserialize(String message, Class<T> clazz) {
-		log.error("received message : [{}]", message);
 		try {
 			return objectMapper.readValue(message, clazz);
 		} catch (IOException e) {

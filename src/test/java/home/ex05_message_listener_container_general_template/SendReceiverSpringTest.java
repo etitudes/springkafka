@@ -27,6 +27,9 @@ public class SendReceiverSpringTest {
 		kafkaTemplate.flush();
 		kafkaTemplate.send("emp-topic", newEmpJson(2L));
 		kafkaTemplate.flush();
+
+		// consumer가 메시지를 처리할 때 까지 기다린다.
+		Thread.sleep(2000);
 	}
 
 	private EmpDto newEmpJson(Long empNo) {
