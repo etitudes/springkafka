@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class ContainerProperty {
 	private String topic;
 	private String consumerGroupId;
+	private int concurrency = 2;
 }

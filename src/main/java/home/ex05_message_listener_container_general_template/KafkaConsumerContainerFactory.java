@@ -23,6 +23,7 @@ public abstract class KafkaConsumerContainerFactory {
 
 		DefaultKafkaConsumerFactory<String, String> consumerFactory = new DefaultKafkaConsumerFactory<>(consumerConfigs());
 		ConcurrentMessageListenerContainer<String, String> container = new ConcurrentMessageListenerContainer<>(consumerFactory, containerProps);
+		container.setConcurrency(property.getConcurrency());
 		container.start();
 		return container;
 	}
