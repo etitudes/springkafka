@@ -1,5 +1,6 @@
 package home.ex05_message_listener_container_general_template;
 
+import home.ex05_message_listener_container_general_template.client.EmpDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.kafka.core.KafkaTemplate;

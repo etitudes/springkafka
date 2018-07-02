@@ -1,4 +1,4 @@
-package home.ex05_message_listener_container_general_template;
+package home.ex05_message_listener_container_general_template.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
