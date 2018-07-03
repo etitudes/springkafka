@@ -1,7 +1,7 @@
 package home.ex05_message_listener_container_general_template;
 
 import home.ex05_message_listener_container_general_template.client.EmpDto;
-import home.ex05_message_listener_container_general_template.client.SimpleEmpListener;
+import home.ex05_message_listener_container_general_template.client.SimpleEmpReceiver;
 import home.serializer.SimpleJsonSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -26,14 +26,14 @@ import java.util.Map;
 class AppConfig {
 
 	@Bean
-	public ConcurrentMessageListenerContainer simpleEmpMessageListenerContainer(@Autowired SimpleEmpListener listener) {
+	public ConcurrentMessageListenerContainer simpleEmpMessageListenerContainer(@Autowired SimpleEmpReceiver receiver) {
 		ContainerProperty property = new ContainerProperty();
 		property.setTopic("emp-topic");
 		property.setConsumerGroupId("foo_consumer_ex05");
 		Map<String, Object> consumerConfigs = consumerConfigs();
 		consumerConfigs.put(ConsumerConfig.CLIENT_ID_CONFIG, "client-ex05");
 		property.setConsumerConfigs(consumerConfigs);
-		return KafkaConsumerContainerFactory.newContainer(EmpDto.class, listener, property);
+		return KafkaConsumerContainerFactory.newContainer(EmpDto.class, receiver, property);
 	}
 
 	@Bean("simpleKafkaTemplate")

@@ -9,11 +9,11 @@ import org.springframework.kafka.listener.config.ContainerProperties;
 public abstract class KafkaConsumerContainerFactory {
 	private KafkaConsumerContainerFactory() {}
 
-	public static <T> ConcurrentMessageListenerContainer<String, String> newContainer(Class<T> clazz, GenericMessageListener<T> listener, ContainerProperty property) {
+	public static <T> ConcurrentMessageListenerContainer<String, String> newContainer(Class<T> clazz, MessageReceiver<T> receiver, ContainerProperty property) {
 		ContainerProperties containerProps = new ContainerProperties(property.getTopic());
 		containerProps.setGroupId(property.getConsumerGroupId());
 		containerProps.setMessageListener((MessageListener<String, String>) message ->
-			listener.onMessage(JsonDeserializer.deserialize(message.value(), clazz))
+			receiver.receive(JsonDeserializer.deserialize(message.value(), clazz))
 		);
 
 		DefaultKafkaConsumerFactory<String, String> consumerFactory = new DefaultKafkaConsumerFactory<>(property.getConsumerConfigs());
